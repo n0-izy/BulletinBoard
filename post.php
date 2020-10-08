@@ -1,19 +1,12 @@
 <?php 
-session_start();
 
-  $errors = array();
-  $contents =''; 
-  $category =''; 
+  $errors = [];
 
   if(!empty($_POST)){
-    $contents = $_POST['contents'];
-    $category = $_POST['category'];
-    if($contents === "" ){
+    if($_POST['contents'] === "" ){
       $errors['contents'] = "※必須項目です";
     }
     if(empty($errors)){
-      $_SESSION['contents'] = $contents;
-      $_SESSION['category'] = $category;
       header('Location: ./timeline.php');
       exit();
     }
