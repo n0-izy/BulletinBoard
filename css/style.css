@@ -1,9 +1,11 @@
-<style>
-      body{
-        background-color: #f5f5f5;
-      }
-      .wf-nicomoji { font-family: "Nico Moji"; }
-      .button-1{
-        background-color:#ff7f7f;
-      }
-    </style>
+
+body{
+  background-color: #f5f5f5;
+}
+.wf-nicomoji { font-family: "Nico Moji"; }
+.button-1{
+  background-color:#ff7f7f;
+}
+#errors{
+  color: red;
+}

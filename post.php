@@ -1,3 +1,19 @@
+<?php 
+
+  $errors = [];
+
+  if(!empty($_POST)){
+    if($_POST['contents'] === "" ){
+      $errors['contents'] = "※必須項目です";
+    }
+    if(empty($errors)){
+      header('Location: ./timeline.php');
+      exit();
+    }
+  }
+  
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -18,7 +34,7 @@
           <h1 class="mx-auto text-center font-weight-bold  wf-nicomoji">投稿<br>~form~</h1>
       </div>
 
-      <form id="i" action="timeline.php" method="post">
+      <form id="i" action="" method="post">
         <div class="container">
           <div class="row ">
             <div class="col-6 mx-auto rounded bg-light shadow-lg">
@@ -26,6 +42,13 @@
             <div class="row">
               <div class="col-12 mx-auto ">
                 <textarea class="form-control  col-12 mt-5 mb-1" name="contents" id="" cols="" rows="6"></textarea>
+                <?php
+                  if(isset($errors['contents'])){
+                    echo '<p id="errors">';
+                    echo $errors['contents'];
+                    echo '</p>';
+                  }
+                ?>
               </div>
             </div>
           </div>
