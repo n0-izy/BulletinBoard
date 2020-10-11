@@ -34,7 +34,7 @@
           <h1 class="mx-auto text-center font-weight-bold  wf-nicomoji">投稿<br>~form~</h1>
       </div>
 
-      <form  actin="" method="post">
+      <form  action="" method="post">
         <div class="container">
           <div class="row ">
             <div class="col-6 mx-auto rounded bg-light shadow-lg">
