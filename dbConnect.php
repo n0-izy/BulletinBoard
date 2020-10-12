@@ -27,7 +27,8 @@ function dbConnect($hostname, $dbname, $dbuser = 'root', $password = '') {
  */
 function insert($sql, $params) {
   try {
-    $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
+    // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
+    $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($sql);
     $stmt->execute($params);
   } catch (PDOException $e) {
