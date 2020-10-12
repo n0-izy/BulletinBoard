@@ -8,7 +8,18 @@
       $errors['post_content'] = "※必須項目です";
     }
     if(empty($errors)){
-      insert();
+      $sql    = "INSERT INTO 
+              posts(user_id, post_content, category, created, updated)
+              VALUES
+              (:user_id, :post_content, :category, :created, :updated)";
+      $params = [
+        ':user_id'      => 1,
+        ':post_content' => $_POST['post_content'],
+        ':category'     => $_POST['category'],
+        ':created'      => date('Y-m-d H:i:s'),
+        ':updated'      => date('Y-m-d H:i:s'),
+      ];
+      insert($sql, $params);
       header('Location: ./timeline.php');
       exit();
     }
