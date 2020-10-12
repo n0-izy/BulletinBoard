@@ -1,5 +1,5 @@
 <?php 
-  // require_once('env/env.php');
+  require_once('dbConnect.php');
   var_dump($_POST);
   $errors = [];
 
@@ -8,38 +8,11 @@
       $errors['post_content'] = "※必須項目です";
     }
     if(empty($errors)){
-      dbConnect();
-      // header('Location: ./timeline.php');
+      insert();
+      header('Location: ./timeline.php');
       exit();
     }
   }
-
-  function dbConnect() {
-    $dsn  = 'mysql:host=localhost;dbname=bulletinboard;charset=utf8';
-    $user = 'root';
-    $pass = '';
-    try{
-      $dbh = new PDO($dsn, $user, $pass);
-      $sql    = 'INSERT INTO 
-                  posts(user_id,post_content, category, created, updated)
-                  VALUES
-                  (:user_id, :post_content, :category, :created, :updated)';
-
-      $stmt   = $dbh->prepare($sql);
-      $params = array(
-        ':user_id'      => 1,
-        ':post_content' => $_POST['post_content'],
-        ':category'     => $_POST['category'],
-        ':created'      => date('Y-m-d H:i:s'),
-        ':updated'      => date('Y-m-d H:i:s'),
-      );
-      $stmt->execute($params);
-      } catch(PDOExetion $e){
-        echo '接続失敗です'. $e->getMessage();
-        exit();
-      }
-    }
-    
 ?>
 
 <!doctype html>
