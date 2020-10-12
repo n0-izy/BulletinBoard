@@ -1,21 +1,49 @@
 <?php 
+  // require_once('env/env.php');
   var_dump($_POST);
   $errors = [];
 
   if(!empty($_POST)){
-    if($_POST['contents'] === "" ){
-      $errors['contents'] = "※必須項目です";
+    if($_POST['post_content'] === "" ){
+      $errors['post_content'] = "※必須項目です";
     }
     if(empty($errors)){
-      header('Location: ./timeline.php');
+      dbConnect();
+      // header('Location: ./timeline.php');
       exit();
     }
   }
-  
+
+  function dbConnect() {
+    $dsn  = 'mysql:host=localhost;dbname=bulletinboard;charset=utf8';
+    $user = 'root';
+    $pass = '';
+    try{
+      $dbh = new PDO($dsn, $user, $pass);
+      $sql    = 'INSERT INTO 
+                  posts(user_id,post_content, category, created, updated)
+                  VALUES
+                  (:user_id, :post_content, :category, :created, :updated)';
+
+      $stmt   = $dbh->prepare($sql);
+      $params = array(
+        ':user_id'      => 1,
+        ':post_content' => $_POST['post_content'],
+        ':category'     => $_POST['category'],
+        ':created'      => date('Y-m-d H:i:s'),
+        ':updated'      => date('Y-m-d H:i:s'),
+      );
+      $stmt->execute($params);
+      } catch(PDOExetion $e){
+        echo '接続失敗です'. $e->getMessage();
+        exit();
+      }
+    }
+    
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -41,11 +69,11 @@
           <div class="form-group">
             <div class="row">
               <div class="col-12 mx-auto ">
-                <textarea class="form-control  col-12 mt-5 mb-1" name="contents" id="textmessage"  cols="" rows="6"></textarea>
+                <textarea class="form-control  col-12 mt-5 mb-1" name="post_content" id="textmessage"  cols="" rows="6"></textarea>
                 <?php
-                  if(isset($errors['contents'])){
+                  if(isset($errors['post_content'])){
                     echo '<p id="errors">';
-                    echo $errors['contents'];
+                    echo $errors['post_content'];
                     echo '</p>';
                   }
                 ?>
