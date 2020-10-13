@@ -1,5 +1,5 @@
 <?php 
-  require_once('dbConnect.php');
+  require_once('dbHandler.php');
   var_dump($_POST);
   $errors = [];
 
@@ -54,13 +54,13 @@
             <div class="row">
               <div class="col-12 mx-auto ">
                 <textarea class="form-control  col-12 mt-5 mb-1" name="post_content" id="textmessage"  cols="" rows="6"></textarea>
-                <?php
+                <!-- <?php
                   if(isset($errors['post_content'])){
                     echo '<p id="errors">';
                     echo $errors['post_content'];
                     echo '</p>';
                   }
-                ?>
+                ?> -->
               </div>
             </div>
           </div>
