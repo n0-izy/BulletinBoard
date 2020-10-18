@@ -43,7 +43,17 @@ var_dump($_POST);
           <p class="font-weight-bold d-inline">投稿者:shimoji</p>
             <div class="">
               <p class="font-weight-bold d-inline">投稿時間:2020/10/10 15:00:15</p>
-              <button id="btn" class="d-inline">削除</button>
+              <button class="d-inline DeleteButton">削除</button>
+            </div>
+        </div>
+          <pc class="m-0 PostContent">テストテストテストテストテストfdsfsdfsdfsdfsdfsdfsdfsdfsdfsfsfqerwerfwefwefwefwefwefwefdfadfasdfaaaaaaaaaaaaaaaaaaaaaaテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
+      </div>
+      <div id="backColor"class="border border-dark">
+        <div class=" bg-secondary">
+          <p class="font-weight-bold d-inline">投稿者:shimoji</p>
+            <div class="">
+              <p class="font-weight-bold d-inline">投稿時間:2020/10/10 15:00:15</p>
+              <button id="btn" class="d-inline DeleteButton">削除</button>
             </div>
         </div>
           <p id="contents"class="m-0 ">テストテストテストテストテストfdsfsdfsdfsdfsdfsdfsdfsdfsdfsfsfqerwerfwefwefwefwefwefwefdfadfasdfaaaaaaaaaaaaaaaaaaaaaaテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
@@ -53,17 +63,7 @@ var_dump($_POST);
           <p class="font-weight-bold d-inline">投稿者:shimoji</p>
             <div class="">
               <p class="font-weight-bold d-inline">投稿時間:2020/10/10 15:00:15</p>
-              <button id="btn" class="d-inline">削除</button>
-            </div>
-        </div>
-          <p id="contents"class="m-0 ">テストテストテストテストテストfdsfsdfsdfsdfsdfsdfsdfsdfsdfsfsfqerwerfwefwefwefwefwefwefdfadfasdfaaaaaaaaaaaaaaaaaaaaaaテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
-      </div>
-      <div id="backColor"class="border border-dark">
-        <div class=" bg-secondary">
-          <p class="font-weight-bold d-inline">投稿者:shimoji</p>
-            <div class="">
-              <p class="font-weight-bold d-inline">投稿時間:2020/10/10 15:00:15</p>
-              <button id="btn" class="d-inline">削除</button>
+              <button id="btn" class="d-inline DeleteButton">削除</button>
             </div>
         </div>
           <p id="contents"class="m-0 ">テストテストテストテストテストfdsfsdfsdfsdfsdfsdfsdfsdfsdfsfsfqerwerfwefwefwefwefwefwefdfadfasdfaaaaaaaaaaaaaaaaaaaaaaテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
