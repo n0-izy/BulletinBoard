@@ -1,5 +1,15 @@
 <?php
-var_dump($_POST);
+require_once ('dbHandler.php');
+$sql_posts = 'SELECT * FROM posts ORDER BY id desc LIMIT 20';
+$sql_post = select_posts($sql_posts);
+
+
+
+$sql_dbusers = 'SELECT * FROM users ORDER BY id desc LIMIT 20';
+$sql_users = select_users($sql_dbusers);
+
+
+
 ?>
 
 <!doctype html>
@@ -36,37 +46,35 @@ var_dump($_POST);
           <option value="5">バイク</option>
         </select>
       </div>
+    <div class="container">
+      <a href="post.php" class="">投稿する</a>
+    </div>
 
 
       <div id="backColor"class="border border-dark">
-        <div class=" bg-secondary">
-          <p class="font-weight-bold d-inline">投稿者:shimoji</p>
-            <div class="">
-              <p class="font-weight-bold d-inline">投稿時間:2020/10/10 15:00:15</p>
-              <button class="d-inline DeleteButton">削除</button>
-            </div>
-        </div>
-          <pc class="m-0 PostContent">テストテストテストテストテストfdsfsdfsdfsdfsdfsdfsdfsdfsdfsfsfqerwerfwefwefwefwefwefwefdfadfasdfaaaaaaaaaaaaaaaaaaaaaaテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
-      </div>
-      <div id="backColor"class="border border-dark">
-        <div class=" bg-secondary">
-          <p class="font-weight-bold d-inline">投稿者:shimoji</p>
-            <div class="">
-              <p class="font-weight-bold d-inline">投稿時間:2020/10/10 15:00:15</p>
-              <button id="btn" class="d-inline DeleteButton">削除</button>
-            </div>
-        </div>
-          <p id="contents"class="m-0 ">テストテストテストテストテストfdsfsdfsdfsdfsdfsdfsdfsdfsdfsfsfqerwerfwefwefwefwefwefwefdfadfasdfaaaaaaaaaaaaaaaaaaaaaaテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
-      </div>
-      <div id="backColor"class="border border-dark">
-        <div class=" bg-secondary">
-          <p class="font-weight-bold d-inline">投稿者:shimoji</p>
-            <div class="">
-              <p class="font-weight-bold d-inline">投稿時間:2020/10/10 15:00:15</p>
-              <button id="btn" class="d-inline DeleteButton">削除</button>
-            </div>
-        </div>
-          <p id="contents"class="m-0 ">テストテストテストテストテストfdsfsdfsdfsdfsdfsdfsdfsdfsdfsfsfqerwerfwefwefwefwefwefwefdfadfasdfaaaaaaaaaaaaaaaaaaaaaaテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
+
+          <?php foreach($sql_users as $user){
+            foreach($sql_post as $post){
+              echo  '<div class="  float-left db_color">'.
+                      '<p class="font-weight-bold mt-1 mb-0">投稿者:'.
+                      $user['user_name'].
+                      '</p>'.
+                      '</div>'.
+                      '<div class="clearfix db_color">'.
+                      '<button class=" DeleteButton float-right">'.
+                      '削除'.
+                      '</button>'.
+                      "<p class='font-weight-bold float-right mt-1 mb-0'>投稿時間:".
+                      $post["created"].
+                      "</p>".
+                      '</div>';
+              echo  '<p class="m-1 d-block  PostContent">'.
+                    $post['post_content'] .
+                    '</p>';
+            }
+          }
+            ?>
+
       </div>
       
 

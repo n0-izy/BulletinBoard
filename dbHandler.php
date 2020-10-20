@@ -37,5 +37,35 @@ function insert($sql, $params) {
   }
 }
 
+/**
+ * DBpostsデータ取得
+ * @param 
+ */
+function select_posts($sql_posts){
+  try{
+    // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
+    $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
+    $stmt = $dbh->query($sql_posts);
+    return $stmt;
+  }catch(PDOException $e){
+    echo '取得失敗です';
+    exit();
+  }
+}
+/**
+ * DBuserデータ取得
+ */
+function select_users($sql_users){
+  try{
+    // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
+    $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
+    $stmt = $dbh->query($sql_users);
+    return $stmt;
+  }catch(PDOException $e){
+    echo '取得失敗です';
+    exit();
+  }
+}
+
 
 
