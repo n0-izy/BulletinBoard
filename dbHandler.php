@@ -39,14 +39,16 @@ function insert($sql, $params) {
 
 /**
  * DBpostsデータ取得
- * @param 
+ * @param string 
  */
-function select_posts($sql_posts){
+function select_posts($sql_posts_users){
   try{
     // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-    $stmt = $dbh->query($sql_posts);
-    return $stmt;
+    $stmt = $dbh->prepare($sql_posts_users);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
   }catch(PDOException $e){
     echo '取得失敗です';
     exit();
@@ -66,6 +68,8 @@ function select_users($sql_users){
     exit();
   }
 }
+
+
 
 
 

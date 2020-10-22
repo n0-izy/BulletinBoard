@@ -1,13 +1,22 @@
 <?php
 require_once ('dbHandler.php');
-$sql_posts = 'SELECT * FROM posts ORDER BY id desc LIMIT 20';
+$sql_posts = "SELECT * FROM posts inner join users on posts.user_id = users.id";
+$sql_posts .= " ORDER BY posts.id desc LIMIT 20";
+
 $sql_post = select_posts($sql_posts);
+// foreach($sql_post as $post){
+  echo '<pre>';
+  var_dump($sql_post);
+  echo '</pre>';
+// }
 
-
-
-$sql_dbusers = 'SELECT * FROM users ORDER BY id desc LIMIT 20';
-$sql_users = select_users($sql_dbusers);
-
+// $sql_dbusers = 'SELECT * FROM users ORDER BY id desc LIMIT 20';
+// $sql_users = select_users($sql_dbusers);
+// foreach($sql_users as $user){
+//   echo '<pre>';
+//   var_dump($user);
+//   echo '</pre>';
+// }
 
 
 ?>
@@ -49,15 +58,14 @@ $sql_users = select_users($sql_dbusers);
     <div class="container">
       <a href="post.php" class="">投稿する</a>
     </div>
-
+    
 
       <div id="backColor"class="border border-dark">
 
-          <?php foreach($sql_users as $user){
-            foreach($sql_post as $post){
+          <?php foreach($sql_post as $post){
               echo  '<div class="  float-left db_color">'.
                       '<p class="font-weight-bold mt-1 mb-0">投稿者:'.
-                      $user['user_name'].
+                      $post['user_name'].
                       '</p>'.
                       '</div>'.
                       '<div class="clearfix db_color">'.
@@ -71,7 +79,6 @@ $sql_users = select_users($sql_dbusers);
               echo  '<p class="m-1 d-block  PostContent">'.
                     $post['post_content'] .
                     '</p>';
-            }
           }
             ?>
 
