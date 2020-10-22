@@ -38,10 +38,10 @@ function insert($sql, $params) {
 }
 
 /**
- * DBpostsデータ取得
+ * DBpostsとDBusersデータ取得
  * @param string 
  */
-function select_posts($sql_posts_users){
+function getPostsAndUsers($sql_posts_users){
   try{
     // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
@@ -54,15 +54,36 @@ function select_posts($sql_posts_users){
     exit();
   }
 }
+
 /**
- * DBuserデータ取得
+ * DBpostsデータ取得
+ * @param string 
  */
-function select_users($sql_users){
+function getPosts($sql_posts){
   try{
     // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-    $stmt = $dbh->query($sql_users);
-    return $stmt;
+    $stmt = $dbh->prepare($sql_posts_users);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
+  }catch(PDOException $e){
+    echo '取得失敗です';
+    exit();
+  }
+}
+
+/**
+ * DBuserデータ取得
+ */
+function getUsers($sql_users){
+  try{
+    // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
+    $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
+    $stmt = $dbh->prepare($sql_users);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result  ;
   }catch(PDOException $e){
     echo '取得失敗です';
     exit();

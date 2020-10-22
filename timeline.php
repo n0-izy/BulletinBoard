@@ -2,21 +2,10 @@
 require_once ('dbHandler.php');
 $sql_posts = "SELECT * FROM posts inner join users on posts.user_id = users.id";
 $sql_posts .= " ORDER BY posts.id desc LIMIT 20";
-
-$sql_post = select_posts($sql_posts);
-// foreach($sql_post as $post){
+$sql_post = getPostsAndUsers($sql_posts);
   echo '<pre>';
   var_dump($sql_post);
   echo '</pre>';
-// }
-
-// $sql_dbusers = 'SELECT * FROM users ORDER BY id desc LIMIT 20';
-// $sql_users = select_users($sql_dbusers);
-// foreach($sql_users as $user){
-//   echo '<pre>';
-//   var_dump($user);
-//   echo '</pre>';
-// }
 
 
 ?>
