@@ -1,10 +1,10 @@
 <?php
 require_once ('dbHandler.php');
-$sql_posts = "SELECT * FROM posts inner join users on posts.user_id = users.id";
-$sql_posts .= " ORDER BY posts.id desc LIMIT 20";
-$sql_post = getPostsAndUsers($sql_posts);
+$SqlPosts = "SELECT * FROM posts inner join users on posts.user_id = users.id";
+$SqlPosts .= " ORDER BY posts.id desc LIMIT 20";
+$SqlPost = getPostsAndUsers($SqlPosts);
   echo '<pre>';
-  var_dump($sql_post);
+  var_dump($SqlPost);
   echo '</pre>';
 
 
@@ -51,7 +51,7 @@ $sql_post = getPostsAndUsers($sql_posts);
 
       <div id="backColor"class="border border-dark">
 
-          <?php foreach($sql_post as $post){
+          <?php foreach($SqlPost as $post){
               echo  '<div class="  float-left db_color">'.
                       '<p class="font-weight-bold mt-1 mb-0">投稿者:'.
                       $post['user_name'].

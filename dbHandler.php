@@ -41,11 +41,11 @@ function insert($sql, $params) {
  * DBpostsとDBusersデータ取得
  * @param string 
  */
-function getPostsAndUsers($sql_posts_users){
+function getPostsAndUsers($SqlPostsUsers){
   try{
     // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-    $stmt = $dbh->prepare($sql_posts_users);
+    $stmt = $dbh->prepare($SqlPostsUsers);
     $stmt->execute();
     $result = $stmt->fetchAll();
     return $result;
@@ -59,11 +59,11 @@ function getPostsAndUsers($sql_posts_users){
  * DBpostsデータ取得
  * @param string 
  */
-function getPosts($sql_posts){
+function getPosts($SqlPosts){
   try{
     // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-    $stmt = $dbh->prepare($sql_posts_users);
+    $stmt = $dbh->prepare($SqlPostsUsers);
     $stmt->execute();
     $result = $stmt->fetchAll();
     return $result;
@@ -76,11 +76,11 @@ function getPosts($sql_posts){
 /**
  * DBuserデータ取得
  */
-function getUsers($sql_users){
+function getUsers($SqlUsers){
   try{
     // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-    $stmt = $dbh->prepare($sql_users);
+    $stmt = $dbh->prepare($SqlUsers);
     $stmt->execute();
     $result = $stmt->fetchAll();
     return $result  ;
