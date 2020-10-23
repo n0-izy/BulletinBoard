@@ -11,4 +11,8 @@ body{
 .PostContent{
   word-break:break-all;
   background-color: #0000;
+  height: 70px;
+}
+.db_color{
+  background-color: #dcdcdc;
 }
