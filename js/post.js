@@ -6,3 +6,6 @@ function valid() {
   }
 }
 
+function dele(){
+  
+}

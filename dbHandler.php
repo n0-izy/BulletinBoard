@@ -19,7 +19,7 @@ function dbConnect($hostname, $dbname, $dbuser = 'root', $password = '') {
     exit();
   }
 }
-  
+
 /**
  * DB登録メソッド
  * @param string
@@ -86,6 +86,20 @@ function getUsers($SqlUsers){
     return $result  ;
   }catch(PDOException $e){
     echo '取得失敗です';
+    exit();
+  }
+}
+
+//DB削除
+function deleteData(){
+  try{
+    // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
+    $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
+    $stmt = $dbh->prepare('DELETE FROM posts WHERE id = 67');
+    $stmt->execute();
+    echo "削除しました";
+  }catch(PDOException $e){
+    echo '削除失敗です';
     exit();
   }
 }

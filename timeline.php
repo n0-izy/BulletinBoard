@@ -1,13 +1,10 @@
 <?php
+
 require_once ('dbHandler.php');
 $SqlPosts = "SELECT * FROM posts inner join users on posts.user_id = users.id";
 $SqlPosts .= " ORDER BY posts.id desc LIMIT 20";
 $SqlPost = getPostsAndUsers($SqlPosts);
-  echo '<pre>';
-  var_dump($SqlPost);
-  echo '</pre>';
-
-
+var_dump($_POST);
 ?>
 
 <!doctype html>
@@ -44,8 +41,12 @@ $SqlPost = getPostsAndUsers($SqlPosts);
           <option value="5">バイク</option>
         </select>
       </div>
+
+    
+
     <div class="container">
       <a href="post.php" class="">投稿する</a>
+      <a href=""<?php deleteData()?> >削除</a>
     </div>
     
 
@@ -58,19 +59,20 @@ $SqlPost = getPostsAndUsers($SqlPosts);
                       '</p>'.
                       '</div>'.
                       '<div class="clearfix db_color">'.
-                      '<button class=" DeleteButton float-right">'.
+                      '<form action="" method="post" class="m-0 p-0">'.
+                      '<button type="submit" id="dele" name="post[0]"class=" DeleteButton float-right"  >'.
                       '削除'.
                       '</button>'.
+                      '</form>'.
                       "<p class='font-weight-bold float-right mt-1 mb-0'>投稿時間:".
-                      $post["created"].
+                      $post['created'].
                       "</p>".
                       '</div>';
-              echo  '<p class="m-1 d-block  PostContent">'.
+              echo  '<p class="m-1 d-block PostContent">'.
                     $post['post_content'] .
                     '</p>';
           }
             ?>
-
       </div>
       
 
@@ -79,5 +81,7 @@ $SqlPost = getPostsAndUsers($SqlPosts);
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="js/post.js"></script>
+    <script src="js/jquery-3.5.1.min.js"></script>
   </body>
 </html>
