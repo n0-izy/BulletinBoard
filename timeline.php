@@ -1,7 +1,9 @@
 <?php
 require_once ('dbHandler.php');
-$SqlPosts = "SELECT * FROM posts inner join users on posts.user_id = users.id";
-$SqlPosts .= " ORDER BY posts.id desc LIMIT 20";
+$SqlPosts = "SELECT posts.id, users.user_name, posts.post_content, posts.created 
+              FROM posts inner join users on posts.user_id = users.id
+              ORDER BY posts.id desc LIMIT 20";
+
 $SqlPost = getPostsAndUsers($SqlPosts);
   echo '<pre>';
   var_dump($SqlPost);
@@ -47,6 +49,8 @@ $SqlPost = getPostsAndUsers($SqlPosts);
     <div class="container">
       <a href="post.php" class="">投稿する</a>
     </div>
+    <a href=""<?php deleteData()?> >削除</a>
+    
     
 
       <div id="backColor"class="border border-dark">

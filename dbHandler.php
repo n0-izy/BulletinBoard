@@ -90,7 +90,16 @@ function getUsers($SqlUsers){
   }
 }
 
-
-
-
-
+//DB削除
+function deleteData(){
+  try{
+    // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
+    $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
+    $stmt = $dbh->prepare('DELETE FROM posts WHERE id = 66');
+    $stmt->execute();
+    echo "削除しました";
+  }catch(PDOException $e){
+    echo '削除失敗です';
+    exit();
+  }
+}
