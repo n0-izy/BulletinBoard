@@ -47,7 +47,7 @@ function getPostsAndUsers($SqlPostsUsers){
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($SqlPostsUsers);
     $stmt->execute();
-    $result = $stmt->fetchAll();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
   }catch(PDOException $e){
     echo '取得失敗です';
@@ -65,7 +65,7 @@ function getPosts($SqlPosts){
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($SqlPostsUsers);
     $stmt->execute();
-    $result = $stmt->fetchAll();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
   }catch(PDOException $e){
     echo '取得失敗です';
@@ -82,7 +82,7 @@ function getUsers($SqlUsers){
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($SqlUsers);
     $stmt->execute();
-    $result = $stmt->fetchAll();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result  ;
   }catch(PDOException $e){
     echo '取得失敗です';
@@ -91,15 +91,18 @@ function getUsers($SqlUsers){
 }
 
 //DB削除
-function deleteData(){
+function deleteData($dalete, $id){
   try{
     // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-    $stmt = $dbh->prepare('DELETE FROM posts WHERE id = 66');
-    $stmt->execute();
-    echo "削除しました";
+    $stmt = $dbh->prepare($dalete);
+    $params = array(':id' => $id);
+    $stmt->execute($params);
+    header('Location: http://localhost/BulletinBoard/timeline.php ');
+    exit();
   }catch(PDOException $e){
     echo '削除失敗です';
     exit();
+    
   }
 }
