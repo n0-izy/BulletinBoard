@@ -16,3 +16,50 @@ body{
 .db_color{
   background-color: #dcdcdc;
 }
+
+.modalContents{
+  position: fixed;
+  top: 30%;
+  left: 37%;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 5px;
+  z-index: 5;
+  
+  transition: 0.5s;
+}
+.modalContents.active{
+  opacity: 0;
+  visibility: hidden
+}
+.modalContents h1{
+  font-weight: bold;
+  color: red;
+  margin-bottom: 50px;
+}
+
+.modalItems a{
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 40px;
+  width: 150px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: red;
+}
+.modalMask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: .6;
+  z-index: 1;
+}
+.modalMask.active{
+  opacity: 0;
+  visibility: hidden;
+}

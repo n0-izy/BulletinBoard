@@ -1,18 +1,13 @@
 <?php
 require_once ('dbHandler.php');
-
 // データ取得
   $SqlPosts = "SELECT posts.id, users.user_name, posts.post_content, posts.created, posts.category
                 FROM posts inner join users on posts.user_id = users.id
                 ORDER BY posts.id desc LIMIT 20";
   $SqlPost = getPostsAndUsers($SqlPosts);
 
-  //データ削除
-  if(!empty($_POST['id'])){
-    $delete = 'DELETE FROM posts WHERE id = :id';
-    deleteData($delete, $_POST['id']);
-  }
-
+  // データ削除
+  validat ($_POST);
 ?>
 
 <!doctype html>
@@ -25,8 +20,8 @@ require_once ('dbHandler.php');
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="css/timeLine.css">
-
     <title>Hello, world!</title>
+    <script src="js/modalControl.js" defer></script>
   </head>
 
   <body>
@@ -37,6 +32,17 @@ require_once ('dbHandler.php');
     <div class="container">
       <h1 class="text-center mb-5">ローカル掲示板</h1>
     </div>
+
+    <?php if(!empty($_POST['deleteId'])): ?>
+      <div id="modalContents" class="modalContents">
+      <h1>ほんとに削除しますか？</h1>
+      <div class="modalItems">
+        <a class="" id="deleteComent">削除します</a>
+        <a class="" id="deleteCancel">キャンセル</a>
+      </div>
+    </div>
+    <div class="modalMask" id="modalMask"></div>
+    <?php endif; ?>
 
     <div class="container">
       <div class="">
@@ -49,7 +55,6 @@ require_once ('dbHandler.php');
           <option value="5">バイク</option>
         </select>
       </div>
-  
 
       <div class="container">
         <a href="post.php" class="">投稿する</a>
@@ -62,7 +67,9 @@ require_once ('dbHandler.php');
           </div>
           <div class="clearfix db_color">
             <form action="" method="POST" class="m-0 p-0">
-              <button type="submit" name="id" value="<?php echo $post['id']?>" class="DeleteButton float-right"><?php echo "削除". $post["id"] ; ?></button>
+              <button type="submit" class="DeleteButton float-right" id="delete"><?php echo "削除". $post["id"] ; ?></button>
+              <input type="hidden" name="deleteId" value="<?php echo $post['id'] ; ?>">
+              
             </form>
             <p class='font-weight-bold float-right mt-1 mb-0'><?php echo "投稿時間". $post["created"] ; ?></p>
           </div>

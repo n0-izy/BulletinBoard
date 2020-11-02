@@ -63,7 +63,7 @@ function getPosts($SqlPosts){
   try{
     // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-    $stmt = $dbh->prepare($SqlPostsUsers);
+    $stmt = $dbh->prepare($SqlPosts);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
@@ -104,5 +104,12 @@ function deleteData($dalete, $id){
     echo '削除失敗です';
     exit();
     
+  }
+}
+//バリデーション
+function validat ($post) {
+  if(!empty($_POST['deleteId'])){
+    $delete = 'DELETE FROM posts WHERE id = :id';
+    deleteData($delete, $_POST['deleteId']);
   }
 }
