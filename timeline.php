@@ -1,19 +1,20 @@
 <?php
 require_once ('dbHandler.php');
 require_once ('validation.php');
+require_once ('redirect.php');
 
 // データ取得
   $SqlPosts = "SELECT posts.id, users.user_name, posts.post_content, posts.created, posts.category
                 FROM posts inner join users on posts.user_id = users.id
                 ORDER BY posts.id desc LIMIT 20";
   $SqlPost = getPostsAndUsers($SqlPosts);
+
   // データ削除
   if(!validation($_POST)){ //falseだったら
     $serverURL = $_SERVER['REQUEST_URI'];
     $delete = 'DELETE FROM posts WHERE id = :id';
     deleteData($delete, $_POST['deleteId']);
     redirect($serverURL);
-    var_dump($serverURL);
   }
 
 ?>
