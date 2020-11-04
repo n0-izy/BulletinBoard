@@ -47,7 +47,7 @@ function getPostsAndUsers($SqlPostsUsers){
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($SqlPostsUsers);
     $stmt->execute();
-    $result = $stmt->fetchAll();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
   }catch(PDOException $e){
     echo '取得失敗です';
@@ -63,9 +63,9 @@ function getPosts($SqlPosts){
   try{
     // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-    $stmt = $dbh->prepare($SqlPostsUsers);
+    $stmt = $dbh->prepare($SqlPosts);
     $stmt->execute();
-    $result = $stmt->fetchAll();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
   }catch(PDOException $e){
     echo '取得失敗です';
@@ -82,7 +82,7 @@ function getUsers($SqlUsers){
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($SqlUsers);
     $stmt->execute();
-    $result = $stmt->fetchAll();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result  ;
   }catch(PDOException $e){
     echo '取得失敗です';
@@ -90,7 +90,17 @@ function getUsers($SqlUsers){
   }
 }
 
-
-
-
-
+//DB削除
+function deleteData($delete, $id){
+  try{
+    // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
+    $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
+    $stmt = $dbh->prepare($delete);
+    $params = array(':id' => $id);
+    $stmt->execute($params);
+  }catch(PDOException $e){
+    echo '削除失敗です';
+    exit();
+    
+  }
+}
