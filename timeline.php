@@ -1,13 +1,21 @@
 <?php
 require_once ('dbHandler.php');
+require_once ('validation.php');
+
 // データ取得
   $SqlPosts = "SELECT posts.id, users.user_name, posts.post_content, posts.created, posts.category
                 FROM posts inner join users on posts.user_id = users.id
                 ORDER BY posts.id desc LIMIT 20";
   $SqlPost = getPostsAndUsers($SqlPosts);
-
   // データ削除
-  validat ($_POST);
+  if(!validation($_POST)){ //falseだったら
+    $serverURL = $_SERVER['REQUEST_URI'];
+    $delete = 'DELETE FROM posts WHERE id = :id';
+    deleteData($delete, $_POST['deleteId']);
+    redirect($serverURL);
+    var_dump($serverURL);
+  }
+
 ?>
 
 <!doctype html>
@@ -33,17 +41,6 @@ require_once ('dbHandler.php');
       <h1 class="text-center mb-5">ローカル掲示板</h1>
     </div>
 
-    <?php if(!empty($_POST['deleteId'])): ?>
-      <div id="modalContents" class="modalContents">
-      <h1>ほんとに削除しますか？</h1>
-      <div class="modalItems">
-        <a class="" id="deleteComent">削除します</a>
-        <a class="" id="deleteCancel">キャンセル</a>
-      </div>
-    </div>
-    <div class="modalMask" id="modalMask"></div>
-    <?php endif; ?>
-
     <div class="container">
       <div class="">
         <select class="mb-5" name="category">
@@ -67,7 +64,7 @@ require_once ('dbHandler.php');
           </div>
           <div class="clearfix db_color">
             <form action="" method="POST" class="m-0 p-0">
-              <button type="submit" class="DeleteButton float-right" id="delete"><?php echo "削除". $post["id"] ; ?></button>
+              <button type="submit" class="DeleteButton float-right" id="delete">削除</button>
               <input type="hidden" name="deleteId" value="<?php echo $post['id'] ; ?>">
               
             </form>

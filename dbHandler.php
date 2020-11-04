@@ -91,25 +91,16 @@ function getUsers($SqlUsers){
 }
 
 //DB削除
-function deleteData($dalete, $id){
+function deleteData($delete, $id){
   try{
     // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-    $stmt = $dbh->prepare($dalete);
+    $stmt = $dbh->prepare($delete);
     $params = array(':id' => $id);
     $stmt->execute($params);
-    header('Location: http://localhost/BulletinBoard/timeline.php ');
-    exit();
   }catch(PDOException $e){
     echo '削除失敗です';
     exit();
     
-  }
-}
-//バリデーション
-function validat ($post) {
-  if(!empty($_POST['deleteId'])){
-    $delete = 'DELETE FROM posts WHERE id = :id';
-    deleteData($delete, $_POST['deleteId']);
   }
 }
