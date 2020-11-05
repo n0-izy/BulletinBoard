@@ -24,5 +24,8 @@ form{
 }
 button{
   width: 150px;
-  margin-top: 20px;
+}
+
+.err{
+  color: red;
 }
