@@ -1,6 +1,5 @@
 <?php
 require_once('env/env.php');
-
 date_default_timezone_set('Asia/Tokyo');
 
 /**
@@ -27,7 +26,6 @@ function dbConnect($hostname, $dbname, $dbuser = 'root', $password = '') {
  */
 function insert($sql, $params) {
   try {
-    // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($sql);
     $stmt->execute($params);
@@ -43,7 +41,6 @@ function insert($sql, $params) {
  */
 function getPostsAndUsers($SqlPostsUsers){
   try{
-    // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($SqlPostsUsers);
     $stmt->execute();
@@ -61,7 +58,6 @@ function getPostsAndUsers($SqlPostsUsers){
  */
 function getPosts($SqlPosts){
   try{
-    // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($SqlPosts);
     $stmt->execute();
@@ -78,7 +74,6 @@ function getPosts($SqlPosts){
  */
 function getUsers($SqlUsers){
   try{
-    // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($SqlUsers);
     $stmt->execute();
@@ -93,7 +88,6 @@ function getUsers($SqlUsers){
 //DB削除
 function deleteData($delete, $id){
   try{
-    // $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_DEFAULT_PASSWORD);
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($delete);
     $params = array(':id' => $id);
@@ -101,6 +95,5 @@ function deleteData($delete, $id){
   }catch(PDOException $e){
     echo '削除失敗です';
     exit();
-    
   }
 }
