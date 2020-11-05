@@ -31,7 +31,7 @@
         <div class="form-group formItem">
           <label for="password">パスワード</label>
           <input type="password" class="form-control" id="password" placeholder="パスワード入力して下さい">
-          <small class="form-text　text-muted">※16文字以内で入力して下さい</small>
+          <small class="form-text　text-muted">※16q文字以内で入力して下さい</small>
         </div>
         <button type="submit" class="btn btn-primary">登録する！</button>
       </form>
