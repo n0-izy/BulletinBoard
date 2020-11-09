@@ -1,14 +1,11 @@
 <?php
 
-$errors = [];
+require_once('validation.php');
 if(!empty($_POST)){
-  if(mb_strlen($_POST["userName"]) < 1 || mb_strlen($_POST["userName"]) > 20){
-    $errors["userName"] = "※1文字以上20文字以内で入力してください";
-  }
-  if(strlen($_POST["password"]) < 6 || strlen($_POST["password"]) > 16){
-    $errors["password"] = "※6文字以上16文字以内で入力してください";
-  }
+  $errors = registerValidation($_POST);
+  var_dump($errors);
 }
+
 ?>
 
 <!doctype html>
@@ -36,22 +33,17 @@ if(!empty($_POST)){
           <label for="userName">ユーザー名</label>
           <input type="text" class="form-control" name="userName" id="userName" placeholder="ユーザー名を入力してください">
           <small class="form-text text-muted">※20文字以内で入力して下さい</small>
-          <?php if(isset($errors["userName"])){
-            echo '<p class="err">';
-            echo $errors["userName"];
-            echo "</p>";
-
-            } ?>
+          <?php if(isset($errors["userName"])) :?>
+          <p class="err"><?php echo $errors["userName"] ?></p>
+          <?php endif; ?>
         </div>
         <div class="form-group formItem">
           <label for="password">パスワード</label>
           <input type="password" class="form-control" name="password" id="password" placeholder="パスワード入力して下さい">
           <small class="form-text text-muted">※16文字以内で入力して下さい</small>
-          <?php if(isset($errors["password"])){
-            echo '<p class="err">';
-            echo $errors["password"];
-            echo "</p>";
-            } ?>
+          <?php if(isset($errors["password"])) :?>
+          <p class="err"><?php echo $errors["password"] ?></p>
+          <?php endif; ?>
         </div>
         <button type="submit" class="btn btn-primary">登録する！</button>
       </form>
