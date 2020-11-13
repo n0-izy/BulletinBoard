@@ -1,5 +1,8 @@
 <?php
 
+require_once('validation.php');
+  $errors = registerValidation($_POST);
+
 ?>
 
 <!doctype html>
@@ -22,16 +25,22 @@
     </div>
 
     <div class="container w-50 formArea">
-      <form>
+      <form action="" method="POST">
         <div class="form-group formItem">
           <label for="userName">ユーザー名</label>
-          <input type="text" class="form-control" id="userName" placeholder="ユーザー名を入力してください">
-          <small class="form-text　text-muted">※20文字以内で入力して下さい</small>
+          <input type="text" class="form-control" name="userName" id="userName" placeholder="ユーザー名を入力してください">
+          <small class="form-text text-muted">※20文字以内で入力して下さい</small>
+          <?php if(isset($errors["userName"])) :?>
+          <p class="err"><?php echo $errors["userName"] ?></p>
+          <?php endif; ?>
         </div>
         <div class="form-group formItem">
           <label for="password">パスワード</label>
-          <input type="password" class="form-control" id="password" placeholder="パスワード入力して下さい">
-          <small class="form-text　text-muted">※16文字以内で入力して下さい</small>
+          <input type="password" class="form-control" name="password" id="password" placeholder="パスワード入力して下さい">
+          <small class="form-text text-muted">※16文字以内で入力して下さい</small>
+          <?php if(isset($errors["password"])) :?>
+          <p class="err"><?php echo $errors["password"] ?></p>
+          <?php endif; ?>
         </div>
         <button type="submit" class="btn btn-primary">登録する！</button>
       </form>

@@ -10,7 +10,7 @@ require_once ('redirect.php');
   $SqlPost = getPostsAndUsers($SqlPosts);
 
   // データ削除
-  if(!validation($_POST)){ //falseだったら
+  if(!deleteValidation($_POST)){ //falseだったら
     $serverURL = $_SERVER['REQUEST_URI'];
     $delete = 'DELETE FROM posts WHERE id = :id';
     deleteData($delete, $_POST['deleteId']);

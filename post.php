@@ -46,21 +46,21 @@
           <h1 class="mx-auto text-center font-weight-bold  wf-nicomoji">投稿<br>~form~</h1>
       </div>
 
-      <form  action="" method="post">
+      <form action="" method="post">
         <div class="container">
           <div class="row ">
             <div class="col-6 mx-auto rounded bg-light shadow-lg">
           <div class="form-group">
             <div class="row">
               <div class="col-12 mx-auto ">
-                <textarea class="form-control  col-12 mt-5 mb-1" name="post_content" id="textmessage"  cols="" rows="6"></textarea>
-                <!-- <?php
+                <textarea class="form-control  col-12 mt-5 mb-1" name="post_content" id="textmessage" cols="" rows="6"></textarea>
+                <?php
                   if(isset($errors['post_content'])){
                     echo '<p id="errors">';
                     echo $errors['post_content'];
                     echo '</p>';
                   }
-                ?> -->
+                ?>
               </div>
             </div>
           </div>
