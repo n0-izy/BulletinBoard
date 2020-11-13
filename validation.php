@@ -1,6 +1,6 @@
 <?php
 
-function validation ($postDeleteId) {
+function deleteValidation($postDeleteId) {
   if(!empty($_POST['deleteId'])){
     return false;
   }else{
@@ -8,19 +8,16 @@ function validation ($postDeleteId) {
   }
 }
 
-function registerValidation ($post){
+function registerValidation($post){
   $errors = [];
-  if(!empty($_POST)){
+  if(!empty($post)){
     if(mb_strlen($_POST["userName"]) < 1 || mb_strlen($_POST["userName"]) > 20){
       $errors["userName"] = "※1文字以上20文字以内で入力してください";
-      
     }
-  }
-  if(!empty($_POST)){
     if(strlen($_POST["password"]) < 6 || strlen($_POST["password"]) > 16){
         $errors["password"] = "※6文字以上16文字以内で入力してください";
     }
   }
+
   return $errors;
 }
-    // 

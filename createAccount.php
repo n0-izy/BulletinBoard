@@ -1,10 +1,7 @@
 <?php
 
 require_once('validation.php');
-if(!empty($_POST)){
   $errors = registerValidation($_POST);
-  var_dump($errors);
-}
 
 ?>
 
