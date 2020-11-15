@@ -1,0 +1,22 @@
+body{
+  /* background-color: ; */
+}
+.title{
+  margin-top: 5rem;
+  font-size: 10vh;
+  font-family: serif;
+}
+form{
+  width: 100vh;
+  height: 50vh;
+  border: solid 1px;
+  border-radius: 10px;
+  margin: 5vh auto 0;
+}
+.form-Items{
+  margin: 6vh auto 5vh;
+
+}
+.form-button{
+  text-align: center;
+}
