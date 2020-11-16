@@ -1,8 +1,24 @@
 <?php
-
 require_once('validation.php');
-  $errors = registerValidation($_POST);
-
+require_once('dbHandler.php');
+    $errors = registerValidation($_POST);
+    if(!$errors){
+      $sql = "INSERT INTO users 
+                          (user_name, password, created, updated)
+                          VALUE
+                          (:user_name, :password, :created, :updated)";
+      $params = [
+        ':user_name' => $_POST["userName"],
+        ':password'  => password_hash($_POST["password"], PASSWORD_DEFAULT),
+        ':created'   => date('Y-m-d H:i:s'),
+        ':updated'   => date('Y-m-d H:i:s'),
+      ];
+      insert($sql, $params);
+      header('Location: ./timeline.php');
+      exit();
+    }
+    
+    var_dump($_POST);
 ?>
 
 <!doctype html>
