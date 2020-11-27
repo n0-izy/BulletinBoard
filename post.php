@@ -1,6 +1,5 @@
 <?php 
   require_once('dbHandler.php');
-  var_dump($_POST);
   $errors = [];
 
   if(!empty($_POST)){

@@ -1,19 +1,8 @@
-<?php
+<?php 
 session_start();
-require_once('validation.php');
-
-if(!empty($_POST)){
-  $errors = registerValidation($_POST);
-  if(empty($errors)){
-    $_SESSION["userName"] = $_POST["userName"];
-    $_SESSION["password"] = $_POST["password"];
-    header('Location: ./Confirmation.php');
-    exit();
-  }
-}
-
-
-
+// var_dump($_SESSION);
+$userName = $_SESSION['userName'];
+$password = $_SESSION['password'];
 ?>
 
 <!doctype html>
@@ -36,21 +25,17 @@ if(!empty($_POST)){
     </div>
 
     <div class="container w-50 formArea">
-      <form action="" method="POST">
+      <form action="resist.php" method="POST">
         <div class="form-group formItem">
           <label for="userName">ユーザー名</label>
-          <input type="text" class="form-control" name="userName" id="userName" placeholder="ユーザー名を入力してください">
-          <small class="form-text text-muted">※20文字以内で入力して下さい</small>
-          <?php if(isset($errors["userName"])) :?>
-          <p class="err"><?php echo $errors["userName"] ?></p>
+          <?php if(isset($userName)) :?>
+          <p><?php echo $userName ?></p>
           <?php endif; ?>
         </div>
         <div class="form-group formItem">
           <label for="password">パスワード</label>
-          <input type="password" class="form-control" name="password" id="password" placeholder="パスワード入力して下さい">
-          <small class="form-text text-muted">※16文字以内で入力して下さい</small>
-          <?php if(isset($errors["password"])) :?>
-          <p class="err"><?php echo $errors["password"] ?></p>
+          <?php if(isset($password)) :?>
+          <p><?php echo $password ?></p>
           <?php endif; ?>
         </div>
         <button type="submit" class="btn btn-primary">登録する！</button>
