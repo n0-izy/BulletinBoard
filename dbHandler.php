@@ -6,8 +6,6 @@ date_default_timezone_set('Asia/Tokyo');
  * DB接続メソッド
  * @param string
  * @param string
- * @param string
- * @param string
  */
 function dbConnect($hostname, $dbname, $dbuser = 'root', $password = '') {
   $dsn = "mysql:host=$hostname;dbname=$dbname;charset=utf8";
@@ -97,3 +95,4 @@ function deleteData($delete, $id){
     exit();
   }
 }
+

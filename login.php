@@ -1,5 +1,5 @@
 <?php
-
+  require_once('dbHandler.php');
 ?>
 
 <!doctype html>
