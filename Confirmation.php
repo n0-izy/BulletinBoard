@@ -27,15 +27,15 @@ $password = $_SESSION['password'];
     <div class="container w-50 formArea">
       <form action="resist.php" method="POST">
         <div class="form-group formItem">
-          <label for="userName">ユーザー名</label>
+          <p>ユーザー名</p>
           <?php if(isset($userName)) :?>
           <p><?php echo $userName ?></p>
           <?php endif; ?>
         </div>
         <div class="form-group formItem">
-          <label for="password">パスワード</label>
+          <p>パスワード</p>
           <?php if(isset($password)) :?>
-          <p><?php echo $password ?></p>
+          <p><?php echo str_repeat("*",mb_strlen($password, "UTF-8")); ?></p>
           <?php endif; ?>
         </div>
         <button type="submit" class="btn btn-primary">登録する！</button>
