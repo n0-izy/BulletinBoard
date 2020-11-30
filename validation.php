@@ -6,13 +6,16 @@ function deleteValidation($postDeleteId) {
     return true;
   }
 }
-function registerValidation($post){
+function registerValidation($post, $result){
   $errors = [];
     if(mb_strlen($_POST["userName"]) < 1 || mb_strlen($_POST["userName"]) > 20){
       $errors["userName"] = "※1文字以上20文字以内で入力してください";
     }
     if(strlen($_POST["password"]) < 6 || strlen($_POST["password"]) > 16){
         $errors["password"] = "※6文字以上16文字以内で入力してください";
+    }
+    if(count($result) > 0 ){
+        $errors["userPss"] = "すでに登録済みです";
     }
   return $errors;
 }

@@ -1,9 +1,16 @@
 <?php
 session_start();
 require_once('validation.php');
+require_once('dbHandler.php');
 
 if(!empty($_POST)){
-  $errors = registerValidation($_POST);
+  $SqlUsers = "SELECT * FROM users WHERE user_name = :user_name OR password = :password";
+  $params = [
+            ':user_name'  => $_POST['userName'],
+            ':password'   => $_POST['password'],
+   ];
+  $result = getUsers($SqlUsers, $params);
+  $errors = registerValidation($_POST, $result);
   if(empty($errors)){
     $_SESSION["userName"] = $_POST["userName"];
     $_SESSION["password"] = $_POST["password"];
@@ -11,6 +18,8 @@ if(!empty($_POST)){
     exit();
   }
 }
+  
+
 
 
 
@@ -35,6 +44,7 @@ if(!empty($_POST)){
       <h1 class="text-center title">アカウント登録</h1>
     </div>
 
+
     <div class="container w-50 formArea">
       <form action="" method="POST">
         <div class="form-group formItem">
@@ -43,6 +53,9 @@ if(!empty($_POST)){
           <small class="form-text text-muted">※20文字以内で入力して下さい</small>
           <?php if(isset($errors["userName"])) :?>
           <p class="err"><?php echo $errors["userName"] ?></p>
+          <?php endif; ?>
+          <?php if(isset($errors["userPss"])) :?>
+          <p class="err"><?php echo $errors["userPss"] ?></p>
           <?php endif; ?>
         </div>
         <div class="form-group formItem">

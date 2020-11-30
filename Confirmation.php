@@ -1,6 +1,5 @@
 <?php 
 session_start();
-// var_dump($_SESSION);
 $userName = $_SESSION['userName'];
 $password = $_SESSION['password'];
 ?>
@@ -25,7 +24,7 @@ $password = $_SESSION['password'];
     </div>
 
     <div class="container w-50 formArea">
-      <form action="resist.php" method="POST">
+      <form action="thanks.php" method="POST">
         <div class="form-group formItem">
           <p>ユーザー名</p>
           <?php if(isset($userName)) :?>
