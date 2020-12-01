@@ -70,13 +70,13 @@ function getPosts($SqlPosts){
 /**
  * DBuserデータ取得
  */
-function getUsers($SqlUsers){
+function getUsers($SqlUsers, $params){
   try{
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($SqlUsers);
-    $stmt->execute();
+    $stmt->execute($params);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $result  ;
+    return $result;
   }catch(PDOException $e){
     echo '取得失敗です';
     exit();

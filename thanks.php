@@ -1,17 +1,13 @@
 <?php
   session_start();
-  var_dump($_SESSION);
   require_once('dbHandler.php');
-  $user_name = $_SESSION['userName'];
-  $password  = $_SESSION['password'];
-
   $sql = "INSERT INTO users 
                       (user_name, password, created, updated)
                       VALUE
                       (:user_name, :password, :created, :updated)";
   $params = [
-    ':user_name' => $user_name,
-    ':password'  => password_hash($password, PASSWORD_DEFAULT),
+    ':user_name' => $_SESSION['userName'],
+    ':password'  => password_hash($_SESSION['password'], PASSWORD_DEFAULT),
     ':created'   => date('Y-m-d H:i:s'),
     ':updated'   => date('Y-m-d H:i:s'),
   ];

@@ -1,9 +1,15 @@
 <?php
 session_start();
 require_once('validation.php');
+require_once('dbHandler.php');
 
 if(!empty($_POST)){
-  $errors = registerValidation($_POST);
+  $SqlUsers = "SELECT * FROM users WHERE user_name = :user_name OR password = :password";
+  $params = [
+            ':user_name'  => $_POST['userName'],
+            ':password'   => $_POST['password'],
+   ];
+  $errors = registerValidation($_POST, getUsers($SqlUsers, $params));
   if(empty($errors)){
     $_SESSION["userName"] = $_POST["userName"];
     $_SESSION["password"] = $_POST["password"];
@@ -11,9 +17,6 @@ if(!empty($_POST)){
     exit();
   }
 }
-
-
-
 ?>
 
 <!doctype html>
@@ -38,17 +41,36 @@ if(!empty($_POST)){
     <div class="container w-50 formArea">
       <form action="" method="POST">
         <div class="form-group formItem">
-          <label for="userName">ユーザー名</label>
+          <div class="container-fulid">
+            <div class="row">
+              <div class="col-2">
+                <label for="userName">ユーザー名</label>
+              </div>
+              <div class="col-6">
+                <small class="form-text text-muted">※20文字以内で入力して下さい</small>
+              </div>
+            </div>
+          </div>
           <input type="text" class="form-control" name="userName" id="userName" placeholder="ユーザー名を入力してください">
-          <small class="form-text text-muted">※20文字以内で入力して下さい</small>
           <?php if(isset($errors["userName"])) :?>
           <p class="err"><?php echo $errors["userName"] ?></p>
           <?php endif; ?>
+          <?php if(isset($errors["userNameErr"])) :?>
+          <p class="err"><?php echo $errors["userNameErr"] ?></p>
+          <?php endif; ?>
         </div>
         <div class="form-group formItem">
-          <label for="password">パスワード</label>
+          <div class="container-fulid">
+            <div class="row">
+              <div class="col-2">
+                <label for="password">パスワード</label>
+              </div>
+              <div class="col-6">
+                <small class="form-text text-muted">※16文字以内で入力して下さい</small>
+              </div>
+            </div>
+          </div>
           <input type="password" class="form-control" name="password" id="password" placeholder="パスワード入力して下さい">
-          <small class="form-text text-muted">※16文字以内で入力して下さい</small>
           <?php if(isset($errors["password"])) :?>
           <p class="err"><?php echo $errors["password"] ?></p>
           <?php endif; ?>
