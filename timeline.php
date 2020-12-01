@@ -71,7 +71,7 @@ require_once ('redirect.php');
             </form>
             <p class='font-weight-bold float-right mt-1 mb-0'><?php echo "投稿時間". $post["created"] ; ?></p>
           </div>
-          <p class="m-1 d-block  PostContent"><?php echo $post["post_content"] ; ?></p>
+          <p class="m-1 d-block PostContent"><?php echo $post["post_content"] ; ?></p>
         <?php endforeach; ?>
       </div>
     </div>
