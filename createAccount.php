@@ -9,7 +9,6 @@ if(!empty($_POST)){
             ':user_name'  => $_POST['userName'],
             ':password'   => $_POST['password'],
    ];
-  // $result = getUsers($SqlUsers, $params);
   $errors = registerValidation($_POST, getUsers($SqlUsers, $params));
   if(empty($errors)){
     $_SESSION["userName"] = $_POST["userName"];
@@ -18,11 +17,6 @@ if(!empty($_POST)){
     exit();
   }
 }
-  
-
-
-
-
 ?>
 
 <!doctype html>
@@ -43,7 +37,6 @@ if(!empty($_POST)){
     <div class="container">
       <h1 class="text-center title">アカウント登録</h1>
     </div>
-
 
     <div class="container w-50 formArea">
       <form action="" method="POST">
