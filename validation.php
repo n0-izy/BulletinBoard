@@ -15,7 +15,7 @@ function registerValidation($post, $result){
         $errors["password"] = "※6文字以上16文字以内で入力してください";
     }
     if(count($result) > 0 ){
-        $errors["userPss"] = "すでに登録済みです";
+        $errors["userNameErr"] = "すでに登録済みです";
     }
   return $errors;
 }

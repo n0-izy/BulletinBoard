@@ -9,8 +9,8 @@ if(!empty($_POST)){
             ':user_name'  => $_POST['userName'],
             ':password'   => $_POST['password'],
    ];
-  $result = getUsers($SqlUsers, $params);
-  $errors = registerValidation($_POST, $result);
+  // $result = getUsers($SqlUsers, $params);
+  $errors = registerValidation($_POST, getUsers($SqlUsers, $params));
   if(empty($errors)){
     $_SESSION["userName"] = $_POST["userName"];
     $_SESSION["password"] = $_POST["password"];
@@ -62,8 +62,8 @@ if(!empty($_POST)){
           <?php if(isset($errors["userName"])) :?>
           <p class="err"><?php echo $errors["userName"] ?></p>
           <?php endif; ?>
-          <?php if(isset($errors["userPss"])) :?>
-          <p class="err"><?php echo $errors["userPss"] ?></p>
+          <?php if(isset($errors["userNameErr"])) :?>
+          <p class="err"><?php echo $errors["userNameErr"] ?></p>
           <?php endif; ?>
         </div>
         <div class="form-group formItem">
