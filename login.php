@@ -1,5 +1,24 @@
 <?php
+  session_start();
+  require_once('validation.php');
   require_once('dbHandler.php');
+
+  if(!empty($_POST)){
+    $errors = logInValidation($_POST);
+    if(empty($errors)){
+      $SqlUsers = "SELECT password FROM users WHERE user_name = :user_name";
+      $params = [
+        ":user_name" => $_POST["userName"],
+      ];
+      $hash = getUsers($SqlUsers, $params);
+      if(password_verify($_POST['password'], $hash['password'])){
+        header("Location: timeline.php");
+        exit();
+      } else {
+        $errors['passErr'] = 'パスワードが違います';
+      }
+    }
+  }
 ?>
 
 <!doctype html>
@@ -31,6 +50,9 @@
         <div class="form-group w-75 form-Items">
           <label for="password">パスワード</label>
           <input type="password" class="form-control" name="password" id="password" placeholder="パスワード入力して下さい">
+          <?php if(isset($errors['passErr'])) : ?>
+            <p class="err"><?php echo $errors['passErr'] ?></p>
+          <?php endif; ?>
           <!-- <small class="form-text text-muted">※16文字以内で入力して下さい</small> -->
           
         </div>
