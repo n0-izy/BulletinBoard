@@ -2,20 +2,37 @@
 session_start();
 require_once('validation.php');
 require_once('dbHandler.php');
+$pass1 = password_hash("aaa", PASSWORD_DEFAULT);
+$pass2 = password_hash("aaa", PASSWORD_DEFAULT);
+$pass3 = password_hash("aaa", PASSWORD_DEFAULT);
+$pass4 = password_hash("aaa", PASSWORD_DEFAULT);
+$pass5 = password_hash("aaa", PASSWORD_DEFAULT);
+$pass6 = password_hash("aaa", PASSWORD_DEFAULT);
+$pass7 = password_hash("aaa", PASSWORD_DEFAULT);
+var_dump($pass1);
+var_dump($pass2);
+var_dump($pass3);
+var_dump($pass4);
+var_dump($pass5);
+var_dump($pass6);
+var_dump($pass7);
 
 if(!empty($_POST)){
-  $SqlUsers = "SELECT * FROM users WHERE user_name = :user_name OR password = :password";
+  $SqlUsers = "SELECT user_name, password FROM users WHERE user_name = :user_name OR password = :password";
   $params = [
             ':user_name'  => $_POST['userName'],
-            ':password'   => $_POST['password'],
+            ':password'   => password_hash($_POST['password'], PASSWORD_DEFAULT),
    ];
-  $errors = registerValidation($_POST, getUsers($SqlUsers, $params));
+  $retult =  getUsers($SqlUsers, $params);
+  $errors = registerValidation($_POST, $retult);
   if(empty($errors)){
     $_SESSION["userName"] = $_POST["userName"];
     $_SESSION["password"] = $_POST["password"];
     header('Location: ./Confirmation.php');
     exit();
   }
+
+
 }
 ?>
 

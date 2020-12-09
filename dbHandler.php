@@ -74,9 +74,6 @@ function getUsers($SqlUsers, $params){
   try{
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($SqlUsers);
-    $params = [
-      ":user_name" => $_POST["userName"],
-    ];
     $stmt->execute($params);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
@@ -85,6 +82,7 @@ function getUsers($SqlUsers, $params){
     exit();
   }
 }
+
 function getUsersValidation($SqlUsers, $params){
   try{
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);

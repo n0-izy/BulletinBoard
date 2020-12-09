@@ -6,12 +6,15 @@
   if(!empty($_POST)){
     $errors = logInValidation($_POST);
     if(empty($errors)){
-      $SqlUsers = "SELECT password FROM users WHERE user_name = :user_name";
+      $SqlUsers = "SELECT * FROM users WHERE user_name = :user_name";
       $params = [
         ":user_name" => $_POST["userName"],
       ];
-      $hash = getUsers($SqlUsers, $params);
+      $hash = getUsersValidation($SqlUsers, $params);
+      $_SESSION['login_user'] = $hash;
       if(password_verify($_POST['password'], $hash['password'])){
+        $_SESSION['login_user'] = $hash;
+        $_SESSION['login_user']['password'] = "";
         header("Location: timeline.php");
         exit();
       } else {

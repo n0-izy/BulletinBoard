@@ -1,6 +1,6 @@
 <?php
-function deleteValidation($postDeleteId) {
-  if(!empty($_POST['deleteId'])){
+function deleteValidation($inputo) {
+  if(!empty($inputo['deleteId'])){
     return false;
   }else{
     return true;
@@ -14,7 +14,7 @@ function registerValidation($post, $result){
     if(strlen($_POST["password"]) < 6 || strlen($_POST["password"]) > 16){
         $errors["password"] = "※6文字以上16文字以内で入力してください";
     }
-    if($result == true ){
+    if(!empty($result)) {
         $errors["userNameErr"] = "すでに登録済みです";
     }
   return $errors;
