@@ -1,6 +1,6 @@
 <?php
-function deleteValidation($inputo) {
-  if(!empty($inputo['deleteId'])){
+function deleteValidation($input) {
+  if(!empty($input['deleteId'])){
     return false;
   }else{
     return true;

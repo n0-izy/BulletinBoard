@@ -10,11 +10,9 @@
       $params = [
         ":user_name" => $_POST["userName"],
       ];
-      $hash = getUsersValidation($SqlUsers, $params);
-      $_SESSION['login_user'] = $hash;
-      if(password_verify($_POST['password'], $hash['password'])){
-        $_SESSION['login_user'] = $hash;
-        $_SESSION['login_user']['password'] = "";
+      $userInfo = getUsersValidation($SqlUsers, $params);
+      if(password_verify($_POST['password'], $userInfo['password'])){
+        $_SESSION['login_user']['user_name'] = $userInfo['user_name'];
         header("Location: timeline.php");
         exit();
       } else {
