@@ -20,3 +20,6 @@ form{
 .form-button{
   text-align: center;
 }
+.err{
+  color: red;
+}

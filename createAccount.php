@@ -4,12 +4,12 @@ require_once('validation.php');
 require_once('dbHandler.php');
 
 if(!empty($_POST)){
-  $SqlUsers = "SELECT * FROM users WHERE user_name = :user_name OR password = :password";
+  $SqlUsers = "SELECT user_name, password FROM users WHERE user_name = :user_name";
   $params = [
             ':user_name'  => $_POST['userName'],
-            ':password'   => $_POST['password'],
    ];
-  $errors = registerValidation($_POST, getUsers($SqlUsers, $params));
+  $userInfo =  getUsers($SqlUsers, $params);
+  $errors = registerValidation($_POST, $userInfo);
   if(empty($errors)){
     $_SESSION["userName"] = $_POST["userName"];
     $_SESSION["password"] = $_POST["password"];

@@ -38,6 +38,9 @@ $password = $_SESSION['password'];
           <?php endif; ?>
         </div>
         <button type="submit" class="btn btn-primary">登録する！</button>
+        <a href="createAccount.php">
+            <button type="button" class="btn btn-danger">戻る</button>
+        </a>
       </form>
     </div>
     <!-- Optional JavaScript -->

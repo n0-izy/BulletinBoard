@@ -54,11 +54,11 @@ function getPostsAndUsers($SqlPostsUsers){
  * DBpostsデータ取得
  * @param string 
  */
-function getPosts($SqlPosts){
+function getPosts($SqlPosts, $params){
   try{
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($SqlPosts);
-    $stmt->execute();
+    $stmt->execute($params);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
   }catch(PDOException $e){
@@ -75,7 +75,20 @@ function getUsers($SqlUsers, $params){
     $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $stmt = $dbh->prepare($SqlUsers);
     $stmt->execute($params);
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result;
+  }catch(PDOException $e){
+    echo '取得失敗です';
+    exit();
+  }
+}
+
+function getUsersValidation($SqlUsers, $params){
+  try{
+    $dbh = dbConnect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
+    $stmt = $dbh->prepare($SqlUsers);
+    $stmt->execute($params);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
   }catch(PDOException $e){
     echo '取得失敗です';
