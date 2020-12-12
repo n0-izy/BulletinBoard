@@ -20,6 +20,9 @@
       }
     }
   }
+  if(!empty($errors)){
+    var_dump($errors);
+  }
 ?>
 
 <!doctype html>
@@ -45,20 +48,27 @@
         <div class="form-group w-75 form-Items">
           <label for="userName">ユーザー名</label>
           <input type="text" class="form-control" name="userName" id="userName" placeholder="ユーザー名を入力してください">
-          <!-- <small class="form-text text-muted">※20文字以内で入力して下さい</small> -->
+          <?php if(isset($errors['userName'])) : ?>
+            <p class="err"><?php echo $errors['userName'] ?></p>
+          <?php endif; ?>
           
         </div>
         <div class="form-group w-75 form-Items">
           <label for="password">パスワード</label>
           <input type="password" class="form-control" name="password" id="password" placeholder="パスワード入力して下さい">
-          <?php if(isset($errors['passErr'])) : ?>
-            <p class="err"><?php echo $errors['passErr'] ?></p>
+          <?php if(isset($errors["passErr"])) : ?>
+            <p class="err"><?php echo $errors["passErr"] ?></p>
           <?php endif; ?>
+          <?php if(isset($errors["password"])) : ?>
+            <p class="err"><?php echo $errors["password"] ?></p>
+          <?php endif; ?>
+          <p></p>
           <!-- <small class="form-text text-muted">※16文字以内で入力して下さい</small> -->
           
         </div>
         <div class="form-button">
           <button type="submit" class="btn btn-primary">ログインする</button>
+        <a href="createAccount.php" class="btn btn-danger">新規登録はこちら</a>
         </div>
       </form>
     </div>
