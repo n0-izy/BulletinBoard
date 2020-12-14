@@ -76,6 +76,7 @@ if(!empty($_POST)){
           <?php endif; ?>
         </div>
         <button type="submit" class="btn btn-primary">登録する！</button>
+        <a href="login.php" class="btn btn-danger">登録済みの方はこちら！</a>
       </form>
     </div>
     <!-- Optional JavaScript -->
