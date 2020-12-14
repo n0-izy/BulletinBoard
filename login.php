@@ -20,9 +20,6 @@
       }
     }
   }
-  if(!empty($errors)){
-    var_dump($errors);
-  }
 ?>
 
 <!doctype html>
@@ -63,7 +60,6 @@
             <p class="err"><?php echo $errors["password"] ?></p>
           <?php endif; ?>
           <p></p>
-          <!-- <small class="form-text text-muted">※16文字以内で入力して下さい</small> -->
           
         </div>
         <div class="form-button">
