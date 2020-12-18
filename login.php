@@ -1,5 +1,4 @@
 <?php
-  session_start();
   require_once('validation.php');
   require_once('dbHandler.php');
 
@@ -12,6 +11,7 @@
       ];
       $userInfo = getUsersValidation($SqlUsers, $params);
       if(password_verify($_POST['password'], $userInfo['password'])){
+        session_start();
         $_SESSION['login_user']['user_name'] = $userInfo['user_name'];
         header("Location: timeline.php");
         exit();
