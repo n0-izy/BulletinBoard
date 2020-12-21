@@ -18,7 +18,7 @@ session_start();
     redirect($serverURL);
   }
   if(!empty($_POST["logout"])){
-    $_SESSION = array();
+    $_SESSION = [];
     setcookie(session_name(), '', time() -10);
     session_destroy();
     header("Location: login.php");
