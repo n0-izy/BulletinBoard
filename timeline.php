@@ -2,6 +2,7 @@
 require_once ('dbHandler.php');
 require_once ('validation.php');
 require_once ('redirect.php');
+session_start();
 
 // データ取得
   $SqlPosts = "SELECT posts.id, users.user_name, posts.post_content, posts.created, posts.category
@@ -15,6 +16,13 @@ require_once ('redirect.php');
     $delete = 'DELETE FROM posts WHERE id = :id';
     deleteData($delete, $_POST['deleteId']);
     redirect($serverURL);
+  }
+  if(!empty($_POST["logout"])){
+    $_SESSION = [];
+    setcookie(session_name(), '', time() -10);
+    session_destroy();
+    header("Location: login.php");
+    exit();
   }
 
 ?>
@@ -35,7 +43,9 @@ require_once ('redirect.php');
 
   <body>
     <div class="col-12 clearfix">
-      <button type="button" class="btn btn-outline-primary float-right mt-5 mr-5">logout</button>
+    <form action="" method="POST">
+      <button type="submit" name="logout" value="logout" class="btn btn-outline-primary float-right mt-5 mr-5">logout</button>
+    </form>
     </div>
 
     <div class="container">
@@ -67,7 +77,6 @@ require_once ('redirect.php');
             <form action="" method="POST" class="m-0 p-0">
               <button type="submit" class="DeleteButton float-right" id="delete">削除</button>
               <input type="hidden" name="deleteId" value="<?php echo $post['id'] ; ?>">
-              
             </form>
             <p class='font-weight-bold float-right mt-1 mb-0'><?php echo "投稿時間". $post["created"] ; ?></p>
           </div>
